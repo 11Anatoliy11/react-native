@@ -8,6 +8,7 @@ export const registerDB = async ({ displayName, image, email, password }) => {
     const uploadImage = async (uri, user) => {
       let URL;
       try {
+        console.log(response, uri)
         const response = await fetch(uri);
         const blob = await response.blob();
         const storageRef = storage.ref();
@@ -18,15 +19,19 @@ export const registerDB = async ({ displayName, image, email, password }) => {
         });
         return URL;
       } catch (e) {
+        console.log("tadam")
         throw e;
       }
     }
-    const url = await uploadImage(image, user.user.multiFactor.user)
+    let url;
+    if (image) {
+      url = await uploadImage(image, user.user.multiFactor.user);
+    }
 
     const updatedUser = await getCurrentUserInfo(displayName, url)
-    //   console.log("updatedUser", updatedUser);
     return updatedUser
   } catch (error) {
+
     throw error;
   }
 };
