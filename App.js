@@ -63,8 +63,8 @@ const App = () => {
       <MainStack.Navigator initialRouteName="Login">
         {isLoggedIn ? <MainStack.Screen name="Home" component={Home} options={{ headerShown: false }} /> :
           <>
-            <MainStack.Screen name="Login" component={Login} />
-            <MainStack.Screen name="Registration" component={Register} />
+            <MainStack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+            <MainStack.Screen name="Registration" component={Register} options={{ headerShown: false }} />
           </>}
 
       </MainStack.Navigator>
